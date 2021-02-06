@@ -7,6 +7,7 @@ let calcResults = {
   age: "",
   sex: "",
   weight: "",
+  points: [],
   values: [],
   texts: [],
 };
@@ -25,6 +26,11 @@ document.addEventListener("DOMContentLoaded", () => {
   base.addEventListener("click", clickListener);
 });
 
+function unloadListener(event) {
+  event.preventDefault();
+  event.returnValue = 'Не забудьте сохранить рехультаты!';
+}
+
 function startTest() {
   results = [];
   $(container).html("");
@@ -34,6 +40,7 @@ function startTest() {
   questionText = container.querySelector("h2");
   questionBlock = container.querySelector(".questionBlock");
   buttonBlock = container.querySelector(".buttonBlock");
+  window.addEventListener('beforeunload', unloadListener);
   nextPage(0);
 }
 
@@ -43,38 +50,67 @@ function showResults() {
   $('h1').html(`${calcResults.name}, ваши персональные рекомендации`)
   $('.welcomeText').text(calcResults.name + $('.welcomeText').text());
   displayResults();
+  window.removeEventListener('beforeunload', unloadListener);
 }
 
 function calcAndSaveResults() {
-    calculateResults();
-    saveCookies();
+  refactorResults();
+  addPoints();
+  interpretResults();
+  getTextResults();
+  saveCookies();
 }
 
-function calculateResults() {
+function refactorResults() {
   calcResults.name = results[0];
-  calcResults.age = questions[1].findIndex((ans) => ans == results[1]);
+  calcResults.age = questions.age.findIndex((ans) => ans == results[1]);
   calcResults.sex = results[2];
   calcResults.weight = results[3];
-  for (let i = 4; i < results.length; i++) {
-    let resInd = 0;
-    if (results[i] < 5) {
-      resInd = 0;
-    } else if (results[i] < 7) {
-      resInd = 1;
-    } else if (results[i] < 9) {
-      resInd = 2;
-    } else {
-      resInd = 3;
-    }
+  for (let i = 4; i < questions.vitamins.length + 4; i++) {
     if (i - 4 == 12) {
-      calcResults.texts.push(doses[i - 4][0][resInd]);
-      calcResults.texts.push(doses[i - 4][1][resInd]);
-      calcResults.values.push(resInd);
-    } else {
-      calcResults.texts.push(doses[i - 4][resInd]);
+      calcResults.points.push(results[i]);
     }
-    calcResults.values.push(resInd);
+    calcResults.points.push(results[i]);
   }
+}
+
+function addPoints() {
+  for (let i = 0; i < addingPointsByQs.length; i++) {
+    if (results[24 + i] >= 5) {
+      addingPointsByQs[i].forEach((p, j) => {
+        calcResults.points[j] += p;
+      })
+    }
+  }
+  if (calcResults.age != 1) {
+    addingPointsByAge[calcResults.age].forEach((p, i) => {
+      calcResults.points[i] += p;
+    })
+  }
+}
+
+function interpretResults() {
+  calcResults.name = results[0];
+  calcResults.age = questions.age.findIndex((ans) => ans == results[1]);
+  calcResults.sex = results[2];
+  calcResults.weight = results[3];
+  calcResults.points.forEach(p => {
+    if (p < 5) {
+      calcResults.values.push(0);
+    } else if (p < 7) {
+      calcResults.values.push(1);
+    } else if (p < 9) {
+      calcResults.values.push(2);
+    } else {
+      calcResults.values.push(3);
+    }
+  });
+};
+
+function getTextResults() {
+  calcResults.values.forEach((res, i) => {
+    calcResults.texts.push(doses[i][res]);
+  });
 }
 
 function displayResults() {
@@ -120,7 +156,7 @@ function saveCookies() {
 
 function nextPage(dir) {
   const nextPage = currentPage + dir;
-  if (nextPage >= questions.length) {
+  if (nextPage >= 4 + questions.vitamins.length + questions.additional.length) {
     saveResults(currentPage);
     calcAndSaveResults();
     showResults();
@@ -134,40 +170,63 @@ function nextPage(dir) {
   $(questionBlock).append(blank);
   loadQuestions(nextPage);
   currentPage = nextPage;
-  progressText.textContent = `${currentPage + 1}/24 вопросов`;
-  progressBar.style.width = `${(100 * currentPage) / 24}%`;
+  progressText.textContent = `${currentPage + 1}/29 вопросов`;
+  progressBar.style.width = `${(100 * currentPage) / 29}%`;
   questionText.textContent =
     currentPage < 4 ? questionTitles[currentPage] : questionTitles[4];
 }
 
 function loadBlanks(page) {
   let blank = "";
-  switch (page) {
-    case 0:
-      return '<input type="text" class="answer" placeholder="Введите Имя">';
-    case 1:
-    case 2:
-      questions[page].forEach(() => {
-        blank += answerTypes["radio"];
-      });
-      return blank;
-    case 3:
-      return '<input type="text" class="answer" placeholder="Укажите вес (в кг)" pattern="^[0-9]+$">';
-    default:
-      questions[page].forEach(() => {
-        blank += answerTypes["checkbox"];
-      });
-      blank += noAnswer;
-      return blank;
+  if (page == 0) {
+    return '<input type="text" class="answer" placeholder="Введите Имя">';
+  } else if (page == 1) {
+    questions.age.forEach(() => {
+      blank += answerTypes["radio"];
+    });
+    return blank;
+  } else if (page == 2) {
+    questions.sex.forEach(() => {
+      blank += answerTypes["radio"];
+    });
+    return blank;
+  } else if (page == 3) {
+    return '<input type="text" class="answer" placeholder="Укажите вес (в кг)" pattern="^[0-9]+$">';
+  } else if (page < 24) {
+    questions.vitamins[page - 4].forEach(() => {
+      blank += answerTypes["checkbox"];
+    });
+    blank += noAnswer;
+    return blank;
+  } else {
+    questions.additional[page - 24].forEach(() => {
+      blank += answerTypes["checkbox"];
+    });
+    blank += noAnswer;
+    return blank;
   }
 }
 
 function loadQuestions(page) {
   if (page != 0 && page != 3) {
     const label = base.querySelectorAll(".label");
-    questions[page].forEach((question, i) => {
-      label[i].textContent = question;
-    });
+    if (page == 1) {
+      questions.age.forEach((question, i) => {
+        label[i].textContent = question;
+      });
+    } else if (page == 2) {
+      questions.sex.forEach((question, i) => {
+        label[i].textContent = question;
+      });
+    } else if (page < 24) {
+      questions.vitamins[page - 4].forEach((question, i) => {
+        label[i].textContent = question;
+      });
+    } else {
+      questions.additional[page - 24].forEach((question, i) => {
+        label[i].textContent = question;
+      });
+    }
   }
 }
 
@@ -241,11 +300,19 @@ function saveRadio(page) {
 
 function saveVitaminPoints(page) {
   let res = 0;
-  base.querySelectorAll("input").forEach((input, i) => {
-    if (input.checked) {
-      res += points[page][i];
-    }
-  });
+  if (page < 24) {
+    base.querySelectorAll("input").forEach((input, i) => {
+      if (input.checked) {
+        res += points[page - 4][i];
+      }
+    });
+  } else {
+    base.querySelectorAll("input").forEach((input, i) => {
+      if (input.checked) {
+        res += additionalPoints[page - 24][i];
+      }
+    });
+  }
   results[page] = res || 0;
 }
 

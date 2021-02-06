@@ -1,5 +1,5 @@
 const basePage = `
-    <div class="container firstPage">
+    <div class="container">
         <h1>Начни свой путь к хорошему самочувствию</h1>
         <div class="welcomeText">
         Тестирование займет 5-7 минут. На основании ваших ответов алгоритм

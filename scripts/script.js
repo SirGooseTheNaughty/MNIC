@@ -20,6 +20,7 @@ let calcResults = {
 let progressText, progressBar, questionText, questionBlock, buttonBlock;
 
 document.addEventListener("DOMContentLoaded", () => {
+  base.id = "base";
   $(base).append(basePage);
   container = base.querySelector(".container");
   const cookieData = getCookie('mnic');

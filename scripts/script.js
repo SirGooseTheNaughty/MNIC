@@ -21,6 +21,7 @@ let progressText, progressBar, questionText, questionBlock, buttonBlock;
 
 document.addEventListener("DOMContentLoaded", () => {
   base.id = "base";
+  $(base).html("");
   $(base).append(basePage);
   container = base.querySelector(".container");
   const cookieData = getCookie('mnic');

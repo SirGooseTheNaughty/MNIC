@@ -4,7 +4,7 @@ import { answerTypes, noAnswer, resultGroups } from './answerTypes.js'
 import { setCookie } from './cookies.js'
 
 
-const base = document.querySelector("#base");
+const base = document.querySelector(baseSelector || "#base");
 let currentPage = 0;
 let container;
 let results;

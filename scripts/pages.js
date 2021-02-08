@@ -1,4 +1,4 @@
-const basePage = `
+export const basePage = `
     <div class="container">
         <h1>Начни свой путь к хорошему самочувствию</h1>
         <div class="welcomeText">
@@ -18,7 +18,7 @@ const basePage = `
     </div>
 `;
 
-const questionsPage = `
+export const questionsPage = `
     <div id="progress">
         <p>1/24 вопросов</p>
         <div class="bar"><div style="width: 4%"></div></div>
@@ -33,7 +33,7 @@ const questionsPage = `
     </div>
 `;
 
-const resultsPage = `
+export const resultsPage = `
     <h1>Ваши персональные рекомендации</h1>
     <div class="welcomeText">, на основании предоставленной информации, вам рекомендовано дополнительно включить в ваш рацион питания продукты и добавки содержащие данные микронутриенты:
     </div>

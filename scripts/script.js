@@ -1,3 +1,9 @@
+import { basePage, questionsPage, resultsPage } from './pages.js'
+import { questionTitles, questions, points, additionalPoints, addingPointsByQs, addingPointsByAge, doses, vitamins } from './questions.js'
+import { answerTypes, noAnswer, resultGroups } from './answerTypes.js'
+import { setCookie } from './cookies.js'
+
+
 const base = document.querySelector("#base");
 let currentPage = 0;
 let container;
@@ -170,8 +176,8 @@ function nextPage(dir) {
   $(questionBlock).append(blank);
   loadQuestions(nextPage);
   currentPage = nextPage;
-  progressText.textContent = `${currentPage + 1}/29 вопросов`;
-  progressBar.style.width = `${(100 * currentPage) / 29}%`;
+  progressText.textContent = `${currentPage + 1}/28 вопросов`;
+  progressBar.style.width = `${(100 * currentPage) / 28}%`;
   questionText.textContent =
     currentPage < 4 ? questionTitles[currentPage] : questionTitles[4];
 }

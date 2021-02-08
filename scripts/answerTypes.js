@@ -1,4 +1,4 @@
-const answerTypes = {
+export const answerTypes = {
     radio: `
         <label class="answer radio">
             <span class="label"></span>
@@ -21,7 +21,7 @@ const answerTypes = {
         </label>`,
 }
 
-const noAnswer = `
+export const noAnswer = `
     <label class="answer checkbox noAnswer">
         <span class="label">Ничего из вышеуказанного</span>
         <input type="checkbox" checked>
@@ -32,7 +32,7 @@ const noAnswer = `
         </span>
     </label>`;
 
-const resultGroups = {
+export const resultGroups = {
     ok: `
         <div class="resultGroup ok">
             <h3>Достаточное содержание микронутриентов</h3>

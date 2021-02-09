@@ -20,6 +20,8 @@ h1 {
   font-size: 32px;
   font-weight: 600;
   line-height: 140%;
+  margin-bottom: 30px;
+  margin-top: 0;
 }
 .welcomeText {
   color: #656a6e;
@@ -38,6 +40,7 @@ h1 {
 }
 .confidential a {
   text-decoration: underline;
+  color: #656a6e;
 }
 
 button {
@@ -51,6 +54,7 @@ button {
   border: none;
   transition: background-color 0.1s ease;
   cursor: pointer;
+  outline-style: none;
 }
 .forwards {
   width: 340px;
@@ -78,7 +82,8 @@ button {
 }
 .begin {
   background-color: #2d2c2a;
-  margin: 20px 0;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 .begin:hover {
   background-color: #575655;

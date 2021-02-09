@@ -3,8 +3,8 @@ import { questionTitles, questions, points, additionalPoints, addingPointsByQs, 
 import { answerTypes, noAnswer, resultGroups } from './answerTypes.js'
 import { setCookie } from './cookies.js'
 
-
-const base = document.querySelector(baseSelector || "#base");
+const baseSelector = "#base"
+const base = document.querySelector(baseSelector);
 let currentPage = 0;
 let container;
 let results;

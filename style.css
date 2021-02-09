@@ -67,7 +67,7 @@ button {
     justify-content: space-evenly;
     align-items: center;
     width: 260px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .forwards:hover,
 .results:hover {
@@ -144,7 +144,7 @@ input:hover {
   color: #656a6e;
   background-color: #f9f9f9;
   padding: 12px 20px;
-  margin: 10px 0;
+  margin: 20px 0;
   display: flex;
   align-items: center;
   position: relative;
@@ -203,10 +203,11 @@ label {
     border-radius: 10px;
     background-color: transparent;
     color: #2D2C2A;
-    margin: 10px 0;
+    margin: 20px 0;
 }
 .result p {
     padding-left: 40px;
+    margin: 0;
 }
 .result p:before {
     position: absolute;
@@ -226,6 +227,9 @@ label {
 }
 .bad p:before {
     background-color: #FF0000;
+}
+.finalText {
+  margin-bottom: 60px;
 }
 
 @media only screen and (max-width: 1200px) {

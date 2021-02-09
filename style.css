@@ -39,8 +39,8 @@ h1 {
   width: 300px;
 }
 .confidential a {
-  text-decoration: underline;
-  color: #656a6e;
+  text-decoration: underline !important;
+  color: #656a6e !important;
 }
 
 button {
@@ -55,6 +55,7 @@ button {
   transition: background-color 0.1s ease;
   cursor: pointer;
   outline-style: none;
+  box-sizing: border-box;
 }
 .forwards {
   width: 340px;
@@ -161,7 +162,7 @@ label {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  margin-top: 23px;
+  margin-top: 40px;
 }
 /* Hide the browser's default checkbox */
 .answer input {

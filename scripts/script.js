@@ -5,6 +5,7 @@ import { setCookie } from './cookies.js'
 
 // const baseSelector = "#base"
 const base = document.querySelector(baseSelector);
+const resultPageBlocks = document.querySelectorAll(resPageBlockSelectors);
 let currentPage = 0;
 let container;
 let results;
@@ -30,6 +31,7 @@ document.addEventListener("DOMContentLoaded", () => {
     showResults()
   } else {
     base.querySelector(".begin").addEventListener("click", startTest);
+    $(resultPageBlocks).css('display', 'none');
   }
   base.addEventListener("click", clickListener);
 });
@@ -58,6 +60,7 @@ function showResults() {
   $('h1').html(`${calcResults.name}, ваши персональные рекомендации`)
   $('.welcomeText').text(calcResults.name + $('.welcomeText').text());
   displayResults();
+  $(resultPageBlocks).css('display', 'block');
   window.removeEventListener('beforeunload', unloadListener);
 }
 

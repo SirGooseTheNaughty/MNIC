@@ -24,6 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   base.id = "base";
   $(base).html("");
   $(base).append(basePage);
+  $(".confidential a").attr("href", confidentialLink);
   container = base.querySelector(".container");
   const cookieData = getCookie('mnic');
   if (cookieData) {

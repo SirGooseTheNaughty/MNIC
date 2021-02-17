@@ -334,6 +334,7 @@ function saveRadio(page) {
 
 function saveVitaminPoints(page) {
   let res = 0;
+  medAnswers[page] = [];
   if (page < 24) {
     base.querySelectorAll("input").forEach((input, i) => {
       if (input.checked) {

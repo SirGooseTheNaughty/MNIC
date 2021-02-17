@@ -171,7 +171,7 @@ function displayResults() {
 
 function saveCookies() {
     const data = JSON.stringify(calcResults);
-    setCookie('mnic', data, {secure: true, 'max-age': 3600});
+    setCookie('mnic', data, {secure: false, 'max-age': 3600});
 }
 
 function nextPage(dir) {
@@ -180,7 +180,6 @@ function nextPage(dir) {
     restartTest();
     return;
   }
-  console.log("ok?");
   if (nextPage >= 4 + questions.vitamins.length + questions.additional.length) {
     saveResults(currentPage);
     calcAndSaveResults();

@@ -196,8 +196,14 @@ function nextPage(dir) {
   currentPage = nextPage;
   progressText.textContent = `${currentPage + 1}/28 вопросов`;
   progressBar.style.width = `${(100 * currentPage) / 28}%`;
-  questionText.textContent =
-    currentPage < 4 ? questionTitles[currentPage] : questionTitles[4];
+  if (currentPage < 4) {
+    questionText.textContent = questionTitles[currentPage];
+  } else if (currentPage < 24) {
+    questionText.textContent = questionTitles[4];
+  } else {
+    questionText.textContent = questionTitles[5];
+  }
+  $(window).scrollTop(0);
 }
 
 function loadBlanks(page) {

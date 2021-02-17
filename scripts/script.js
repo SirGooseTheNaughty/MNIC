@@ -45,6 +45,8 @@ function unloadListener(event) {
 function restartTest() {
   $(base).html("");
   $(base).append(basePage);
+  base.querySelector(".begin").addEventListener("click", startTest);
+  console.log(currentPage);
 }
 
 function startTest() {
@@ -173,10 +175,13 @@ function saveCookies() {
 
 function nextPage(dir) {
   const nextPage = currentPage + dir;
+  console.log(nextPage);
   if (nextPage < 0) {
     restartTest();
+    console.log("restarted");
     return;
   }
+  console.log("ok?");
   if (nextPage >= 4 + questions.vitamins.length + questions.additional.length) {
     saveResults(currentPage);
     calcAndSaveResults();

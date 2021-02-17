@@ -281,6 +281,7 @@ function loadQuestions(page) {
       });
     }
   }
+  console.log(medAnswers[page].length);
   if (medAnswers[page].length) {
     loadPrevAnswers(page);
   }

@@ -9,6 +9,7 @@ const resultPageBlocks = document.querySelectorAll(resPageBlockSelectors);
 let currentPage = 0;
 let container;
 let results;
+let medAnswers = [];
 let calcResults = {
   name: "",
   age: "",
@@ -314,16 +315,19 @@ function saveResults(page) {
       saveVitaminPoints(page);
       break;
   }
+  console.log(medAnswers);
 }
 
 function saveText(page) {
   results[page] = base.querySelector("input").value;
+  medAnswers[page] = results[page];
 }
 
 function saveRadio(page) {
-  base.querySelectorAll("input").forEach((input) => {
+  base.querySelectorAll("input").forEach((input, i) => {
     if (input.checked) {
       results[page] = $(input).siblings(".label").text();
+      medAnswers[page] = i;
     }
   });
 }
@@ -335,12 +339,14 @@ function saveVitaminPoints(page) {
       if (input.checked) {
         res += points[page - 4][i];
       }
+      medAnswers[page].push(+input.checked);
     });
   } else {
     base.querySelectorAll("input").forEach((input, i) => {
       if (input.checked) {
         res += additionalPoints[page - 24][i];
       }
+      medAnswers[page].push(+input.checked);
     });
   }
   results[page] = res || 0;

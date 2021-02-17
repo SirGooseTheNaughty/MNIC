@@ -195,7 +195,7 @@ function nextPage(dir) {
   $(questionBlock).append(blank);
   loadQuestions(nextPage);
   if (dir < 0) {
-    loadPrevAnswers(page);
+    loadPrevAnswers(nextPage);
   }
   currentPage = nextPage;
   progressText.textContent = `${currentPage + 1}/28 вопросов`;

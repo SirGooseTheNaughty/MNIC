@@ -171,7 +171,7 @@ function displayResults() {
 
 function saveCookies() {
     const data = JSON.stringify(calcResults);
-    setCookie('mnic', data, {secure: false, 'max-age': 3600});
+    setCookie('mnic', data, {'max-age': 30000000});
 }
 
 function nextPage(dir) {

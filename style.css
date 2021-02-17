@@ -8,7 +8,7 @@ body {
   width: 100%;
   max-width: 1160px;
   margin: 0 auto;
-  grid-template-columns: repeat(11, calc(60%/12) calc(40%/12)) calc(60%/12);
+  grid-template-columns: repeat(11, 60px 40px) 60px;
 }
 .container {
   margin: 60px 0;
@@ -233,6 +233,10 @@ label {
 }
 
 @media only screen and (max-width: 1200px) {
+  #base {
+    max-width: 940px;
+    grid-template-columns: repeat(11, 60px 20px) 60px;
+  }
   .container {
     margin: 40px 0;
     grid-column: 6 / 19;
@@ -240,9 +244,26 @@ label {
 }
 
 @media only screen and (max-width: 980px) {
+  #base {
+    max-width: 620px;
+    grid-template-columns: repeat(7, 60px 20px) 60px;
+  }
   .container {
-    margin: 40px 0;
     grid-column: 3 / 22;
+  }
+  .begin,
+  .results {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 640px) {
+  #base {
+    display: block;
+  }
+  .container {
+    margin: 40px auto;
+    padding: 0 10px;
   }
 }
 

@@ -194,9 +194,6 @@ function nextPage(dir) {
   const blank = loadBlanks(nextPage);
   $(questionBlock).append(blank);
   loadQuestions(nextPage);
-  if (dir < 0) {
-    loadPrevAnswers(nextPage);
-  }
   currentPage = nextPage;
   progressText.textContent = `${currentPage + 1}/28 вопросов`;
   progressBar.style.width = `${(100 * currentPage) / 28}%`;
@@ -286,6 +283,9 @@ function loadQuestions(page) {
         label[i].textContent = question;
       });
     }
+  }
+  if (medAnswers[page].length) {
+    loadPrevAnswers(page);
   }
 }
 

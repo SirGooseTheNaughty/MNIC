@@ -6,7 +6,7 @@ body {
 #base {
   display: grid;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1160px;
   margin: 0 auto;
   grid-template-columns: repeat(11, calc(60%/12) calc(40%/12)) calc(60%/12);
 }

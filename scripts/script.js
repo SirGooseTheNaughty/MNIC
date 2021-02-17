@@ -214,13 +214,16 @@ function loadPrevAnswers(page) {
   switch (page) {
     case 0:
     case 3:
+      console.log("med 0 3", medAnswers[page]);
       base.querySelector("input").value = medAnswers[page];
       break;
     case 1:
     case 2:
+      console.log("med 1 2", medAnswers[page]);
       base.querySelectorAll("input")[medAnswers[page]].checked = true;
       break;
     default:
+      console.log("med all", medAnswers[page]);
       base.querySelectorAll("input").forEach((input, i) => {
         if (medAnswers[page][i]) {
           input.checked = true;

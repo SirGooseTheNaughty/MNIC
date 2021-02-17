@@ -175,6 +175,7 @@ function nextPage(dir) {
   const nextPage = currentPage + dir;
   if (nextPage < 0) {
     restartTest();
+    return;
   }
   if (nextPage >= 4 + questions.vitamins.length + questions.additional.length) {
     saveResults(currentPage);

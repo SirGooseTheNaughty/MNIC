@@ -42,6 +42,11 @@ function unloadListener(event) {
   event.returnValue = 'Не забудьте сохранить рехультаты!';
 }
 
+function restartTest() {
+  $(base).html("");
+  $(base).append(basePage);
+}
+
 function startTest() {
   results = [];
   $(container).html("");
@@ -168,6 +173,9 @@ function saveCookies() {
 
 function nextPage(dir) {
   const nextPage = currentPage + dir;
+  if (nextPage < 0) {
+    restartTest();
+  }
   if (nextPage >= 4 + questions.vitamins.length + questions.additional.length) {
     saveResults(currentPage);
     calcAndSaveResults();

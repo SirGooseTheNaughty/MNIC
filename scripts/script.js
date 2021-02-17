@@ -45,8 +45,9 @@ function unloadListener(event) {
 function restartTest() {
   $(base).html("");
   $(base).append(basePage);
+  $(".confidential a").attr("href", confidentialLink);
+  container = base.querySelector(".container");
   base.querySelector(".begin").addEventListener("click", startTest);
-  console.log(currentPage);
 }
 
 function startTest() {
@@ -175,10 +176,8 @@ function saveCookies() {
 
 function nextPage(dir) {
   const nextPage = currentPage + dir;
-  console.log(nextPage);
   if (nextPage < 0) {
     restartTest();
-    console.log("restarted");
     return;
   }
   console.log("ok?");
@@ -357,7 +356,7 @@ function saveToFile() {
     })
         .then(canvas => {
             canvas.toBlob(function(blob) {
-                saveAs(blob, "MNIC_results.pdf");
+                saveAs(blob, "MNIC_results.png");
             });
         });
 }

@@ -194,6 +194,9 @@ function nextPage(dir) {
   const blank = loadBlanks(nextPage);
   $(questionBlock).append(blank);
   loadQuestions(nextPage);
+  if (dir < 0) {
+    loadPrevAnswers(page);
+  }
   currentPage = nextPage;
   progressText.textContent = `${currentPage + 1}/28 вопросов`;
   progressBar.style.width = `${(100 * currentPage) / 28}%`;
@@ -205,6 +208,28 @@ function nextPage(dir) {
     questionText.textContent = questionTitles[5];
   }
   $(window).scrollTop(0);
+}
+
+function loadPrevAnswers(page) {
+  switch (page) {
+    case 0:
+    case 3:
+      base.querySelector("input").value = medAnswers[page];
+      break;
+    case 1:
+    case 2:
+      base.querySelectorAll("input")[medAnswers[page]].checked = true;
+      break;
+    default:
+      base.querySelectorAll("input").forEach((input, i) => {
+        if (medAnswers[page][i]) {
+          input.checked = true;
+        } else {
+          input.checked = false;
+        }
+      })
+      break;
+  }
 }
 
 function loadBlanks(page) {
@@ -315,7 +340,6 @@ function saveResults(page) {
       saveVitaminPoints(page);
       break;
   }
-  console.log(medAnswers);
 }
 
 function saveText(page) {

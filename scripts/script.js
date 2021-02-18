@@ -3,9 +3,9 @@ import { questionTitles, questions, points, additionalPoints, addingPointsByQs, 
 import { answerTypes, noAnswer, resultGroups } from './answerTypes.js'
 import { setCookie } from './cookies.js'
 
-const baseSelector = "#base";
-const resPageBlockSelectors = ".respb";
-const confidentialLink  = "#";
+// const baseSelector = "#base";
+// const resPageBlockSelectors = ".respb";
+// const confidentialLink  = "#";
 const base = document.querySelector(baseSelector);
 const resultPageBlocks = document.querySelectorAll(resPageBlockSelectors);
 let currentPage = 0;

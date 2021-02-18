@@ -249,11 +249,18 @@ label {
     grid-template-columns: repeat(7, 60px 20px) 60px;
   }
   .container {
-    grid-column: 3 / 22;
+    grid-column: 1 / 16;
   }
   .begin,
   .results {
     width: 100%;
+  }
+  .results {
+    justify-content: center;
+    margin-top: 0;
+  }
+  .results svg {
+    margin-right: 10px;
   }
 }
 
@@ -313,12 +320,5 @@ label {
   }
   .checkmark {
     transform: scale(0.75);
-  }
-  .results {
-    justify-content: center;
-    margin-top: 0;
-  }
-  .results svg {
-    margin-right: 10px;
   }
 }

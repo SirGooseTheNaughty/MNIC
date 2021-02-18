@@ -270,7 +270,7 @@ label {
   }
   .container {
     margin: 40px auto;
-    padding: 0 10px;
+    padding: 0 20px;
   }
 }
 
@@ -281,7 +281,6 @@ label {
   }
   .container {
     margin: 0 auto;
-    padding: 0 10px;
   }
   h1 {
     font-size: 22px;

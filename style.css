@@ -209,7 +209,7 @@ label {
     padding-left: 40px;
     margin: 0;
 }
-.result p:before {
+/* .result p:before {
     position: absolute;
     left: 20px;
     top: 50%;
@@ -227,6 +227,21 @@ label {
 }
 .bad p:before {
     background-color: #FF0000;
+} */
+.result .marker {
+  position: absolute;
+  height: 30px;
+  width: 8px;
+  border-radius: 4px;
+}
+.ok .marker {
+  background-color: #97A08B;
+}
+.lack .marker {
+  background-color: #F2F3A5;
+}
+.bad .marker {
+  background-color: #FF0000;
 }
 .finalText {
   margin-bottom: 60px;

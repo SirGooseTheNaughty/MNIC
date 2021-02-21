@@ -3,9 +3,9 @@ import { questionTitles, questions, points, additionalPoints, addingPointsByQs, 
 import { answerTypes, noAnswer, resultGroups } from './answerTypes.js'
 import { setCookie } from './cookies.js'
 
-// const baseSelector = "#base";
-// const resPageBlockSelectors = ".respb";
-// const confidentialLink  = "#";
+const baseSelector = "#base";
+const resPageBlockSelectors = ".respb";
+const confidentialLink  = "#";
 const base = document.querySelector(baseSelector);
 const resultPageBlocks = document.querySelectorAll(resPageBlockSelectors);
 let currentPage = 0;
@@ -151,6 +151,7 @@ function displayResults() {
     if (res == 0) {
       $(".ok").append(
         `<div class="result">
+          <div class="marker"></div>
             <p>${vitamins[i]}: ваша дневная дозировка ${calcResults.texts[i]}</p>
         </div>`
       );
@@ -158,6 +159,7 @@ function displayResults() {
     if (res == 1 || res == 2) {
       $(".lack").append(
         `<div class="result">
+          <div class="marker"></div>
             <p>${vitamins[i]}: ваша дневная дозировка ${calcResults.texts[i]}</p>
         </div>`
       );
@@ -165,6 +167,7 @@ function displayResults() {
     if (res == 3) {
       $(".bad").append(
         `<div class="result">
+          <div class="marker"></div>
             <p>${vitamins[i]}: ваша дневная дозировка ${calcResults.texts[i]}</p>
         </div>`
       );
